@@ -27,10 +27,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors();
 }
 else
     app.UseHttpsRedirection();
+
+app.UseCors();
 
 // Controller Endpoint
 app.MapGet("api/meals", async ([FromServices] IMealsRepository mealsRepo) =>
