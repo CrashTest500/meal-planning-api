@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHealthChecks();
 
 // Register Services
 builder.Services.AddTransient<IMealsRepository, MealsRepository>();
@@ -31,6 +32,7 @@ if (app.Environment.IsDevelopment())
 else
     app.UseHttpsRedirection();
 
+app.MapHealthChecks("/HealthCheck");
 app.UseCors();
 
 // Controller Endpoint
